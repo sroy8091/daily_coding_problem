@@ -35,7 +35,6 @@ def product(arr):
 
 def main():
     arr = [10, 15, 3, 7]
-    k = 17
     print(product(arr))
 
 if __name__=="__main__":
