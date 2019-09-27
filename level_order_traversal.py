@@ -13,14 +13,19 @@
 def level_order_traversal(root):
     queue = [root]
     temp = root
+    res = [[root.value]]
     while queue:
-        print(queue[0].value, end=",")
-        temp = queue.pop(0) 
-        if temp.left:
-            queue.append(temp.left)
-        if temp.right:
-            queue.append(temp.right)
-
+        level = len(queue)
+        while level:
+            temp = queue.pop(0) 
+            if temp.left:
+                queue.append(temp.left)
+            if temp.right:
+                queue.append(temp.right)
+            level -= 1
+        if queue:
+            res.append([x.value for x in queue])
+    return res
 
 def dfs_r(root):
     "recursive"
@@ -51,10 +56,10 @@ def dfs(root):
 
 
 class Node:
-    def __init__(self, val, left=None, right=None):
+    def __init__(self, value, left=None, right=None):
         self.left = left
         self.right = right
-        self.value = val
+        self.value = value
 
 def main():
     n1 = Node(5)
@@ -64,7 +69,7 @@ def main():
     n5 = Node(2, n3, n4)
     n6 = Node(1)
     root = Node(0, n6, n5)
-    # level_order_traversal(root)
+    print(level_order_traversal(root))
     # dfs_r(root)
     # dfs(root)
 
